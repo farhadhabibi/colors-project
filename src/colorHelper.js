@@ -40,22 +40,20 @@ function generatePalette(starterPalette) {
         newPalette.colors[level] = [];
     }
     for (let color of starterPalette.colors) {
-        console.log('color array', getScale(color.color, 10))
-        let scale = getScale(color.color, 10)
+        let scale = getScale(color.color, 10).reverse();
+        // console.log('colors are', scale);
         for (let i in scale) {
-            console.log('i is', i)
-            console.log(scale[i])
             newPalette.colors[levels[i]].push({
                 name: `${color.name} ${levels[i]}`,
                 id: color.name.toLowerCase().replace(/ /g, '-'),
                 hex: scale[i],
                 rgb: chroma(scale[i]).css(),
-                rgba: chroma(scale[i]).css().replace("rgb", "rgba").replace(")", ",0.1)")
+                rgba: chroma(scale[i]).css().replace("rgb", "rgba").replace(")", ",1.0)")
             })
         }
-        console.log('colors', newPalette.colors)
+        // console.log('colors', newPalette.colors)
     }
-    // console.log('new platette is', newPalette);
+    console.log('new platette is', newPalette);
     return newPalette;
 }
 
@@ -73,3 +71,9 @@ function getScale(hexColor, numOfColors) {
 }
 
 export { generatePalette };
+
+let arr = ['a', 'b', 'c', 'd', 'e'];
+
+for (let i of arr) {
+    // console.log('i is', i)
+}

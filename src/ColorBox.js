@@ -22,7 +22,6 @@ class ColorBox extends React.Component {
     render() {
         const { background, name } = this.props;
         const { copied } = this.state;
-        console.log(this.state.copied)
         return (
             <CopyToClipboard text={background} onCopy={this.changeCopyState}>
                 <div style={{ backgroundColor: background }} className="ColorBox">
