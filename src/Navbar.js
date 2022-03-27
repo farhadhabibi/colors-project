@@ -2,19 +2,27 @@ import React, { Component } from 'react';
 import Select from '@material-ui/core/Select';
 import MenuItem from '@material-ui/core/MenuItem';
 import Slider from 'rc-slider';
+import Snackbar from '@material-ui/core/Snackbar';
+import IconButton from '@material-ui/core/IconButton';
+import CloseIcon from '@material-ui/icons/Close';
 import 'rc-slider/assets/index.css';
 import './Navbar.css'
 
 class Navbar extends Component {
     constructor(props) {
         super(props);
-        this.state = { format: 'hex' }
-        this.handleChange = this.handleChange.bind(this);
+        this.state = { format: 'hex', open: false }
+        this.handleFormatChange = this.handleFormatChange.bind(this);
+        this.handleClose = this.handleClose.bind(this);
     }
 
-    handleChange(e) {
-        this.setState({ format: e.target.value })
+    handleFormatChange(e) {
+        this.setState({ format: e.target.value, open: true })
         this.props.changeFormat(e.target.value);
+    }
+
+    handleClose() {
+        this.setState({ open: false })
     }
 
     render() {
@@ -33,12 +41,28 @@ class Navbar extends Component {
                     </div>
                 </div>
                 <div className="select-container">
-                    <Select value={format} onChange={this.handleChange}>
+                    <Select value={format} onChange={this.handleFormatChange}>
                         <MenuItem value='hex'>HEX - #ffffff</MenuItem>
                         <MenuItem value='rgb'>RGB - rgb(255, 255, 255)</MenuItem>
                         <MenuItem value='rgba'>RGBA - rgba(255, 255, 255, 1.0)</MenuItem>
                     </Select>
                 </div>
+                <Snackbar
+                    anchorOrigin={{
+                        vertical: 'bottom',
+                        horizontal: 'left',
+                    }}
+                    open={this.state.open}
+                    autoHideDuration={3000}
+                    message={<span id="message-id">Format Changed to {format.toUpperCase()}</span>}
+                    onClose={this.handleClose}
+                    action={
+                        <IconButton onClick={this.handleClose} color='inherit' key='close' aria-label='close'>
+                            <CloseIcon fontSize="small" />
+                        </IconButton>
+                    }
+                />
+
             </header>
         )
     }
