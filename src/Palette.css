@@ -4,4 +4,14 @@
 .Palette-colors {
     height: 90vh;
 }
-
+.Palette-footer {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    height: 4vh;
+    font-weight: bold;
+}
+.emoji {
+    font-size: 1.3rem;
+    margin: 0 10px;
+}
