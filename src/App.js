@@ -3,6 +3,7 @@ import Palette from './Palette';
 import seedColors from './seedColors';
 import { generatePalette } from './colorHelper';
 import './App.css';
+import PaletteList from './PaletteList';
 
 function App() {
   const FindPaletteId = () => {
@@ -12,7 +13,7 @@ function App() {
   }
   return (
     <Routes>
-      <Route path="/" element={<h1>main list</h1>} />
+      <Route path="/" element={<PaletteList palettes={seedColors} />} />
       <Route path="/palette/:id" element={<FindPaletteId />}></Route>
     </Routes>
   );
