@@ -1,21 +1,58 @@
 import React, { Component } from 'react';
 import { NavLink } from 'react-router-dom'
 import MiniPalette from './MiniPalette';
+import { withStyles } from '@material-ui/core/styles';
+
+const styles = {
+    root: {
+        backgroundColor: 'blue',
+        height: '100%',
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'flex-start',
+
+    },
+    container: {
+        display: 'flex',
+        width: '50%',
+        flexDirection: 'column',
+        justifyContent: 'flex-start',
+        flexWrap: 'wrap'
+    },
+    nav: {
+        display: 'flex',
+        width: '100%',
+        justifyContent: 'space-between',
+        color: 'white'
+    },
+    palettes: {
+        display: 'grid',
+        gridTemplateColumns: 'repeat(3, 30%)',
+        gridGap: '5%',
+        width: '100%'
+    }
+}
 
 class PaletteList extends React.Component {
     render() {
-        const { palettes } = this.props;
-        const colors = palettes.map(palette => (
-            <p key={palette.id}><NavLink to={`/palette/${palette.id}`}>{palette.paletteName}</NavLink></p>
-        ))
+        const { palettes, classes } = this.props;
         return (
-            <div>
-                <MiniPalette />
-                <h1>React Colors</h1>
-                {colors}
+            <div className={classes.root}>
+                <div className={classes.container}>
+                    <nav className={classes.nav}>
+                        <h1>React Colors</h1>
+                    </nav>
+                    <div className={classes.palettes}>
+                        {
+                            palettes.map(palette => (
+                                <MiniPalette {...palette} key={palette.id} />
+                            ))
+                        }
+                    </div>
+                </div>
             </div >
         )
     }
 }
 
-export default PaletteList;
+export default (withStyles)(styles)(PaletteList);
