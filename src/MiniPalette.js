@@ -3,29 +3,30 @@ import { withStyles } from '@material-ui/core/styles';
 
 const styles = {
     root: {
-        // display: 'inline-block',
-        // width: '25%',
-        // height: '20%',
-        // margin: '10px',
-        // padding: '0.5rem',
+        padding: '0.5rem',
         backgroundColor: 'white',
         border: '1px solid black',
         borderRadius: '5px',
-        // overflow: 'hidden',
         '&:hover': {
             cursor: 'pointer'
         }
     },
     color: {
+        backgroundColor: 'grey',
+        borderRadius: '5px',
+        overflow: 'hidden'
+    },
+    miniColors: {
         display: 'inline-block',
-        // width: '20%',
-        // height: '30px',
-        // padding: '10px'
+        width: '20%',
+        height: '1.8rem',
+        marginBottom: '-3.5px',
     },
     title: {
         display: 'flex',
         justifyContent: 'space-between',
-        alignItems: 'center'
+        alignItems: 'center',
+        margin: '0 auto'
     },
     emoji: {
         fontSize: '1.5rem'
@@ -35,14 +36,15 @@ const styles = {
 
 function MiniPalette(props) {
     const { classes, paletteName, emoji, colors } = props;
-
     return (
         <div className={classes.root}>
-            {
-                colors.map(color => (
-                    <div className={classes.color} style={{ backgroundColor: color.color }}></div>
-                ))
-            }
+            <div className={classes.color}>
+                {
+                    colors.map(color => (
+                        <div className={classes.miniColors} style={{ backgroundColor: color.color }}></div>
+                    ))
+                }
+            </div>
             <h5 className={classes.title}>{paletteName}<span className={classes.emoji}>{emoji}</span></h5>
         </div>
     )
