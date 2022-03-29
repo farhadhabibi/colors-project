@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
-import { NavLink } from 'react-router-dom'
+import { NavLink, useNavigate } from 'react-router-dom'
 import MiniPalette from './MiniPalette';
 import { withStyles } from '@material-ui/core/styles';
+import { withMyHook } from './colorHelper'
 
 const styles = {
     root: {
@@ -35,8 +36,13 @@ const styles = {
 }
 
 class PaletteList extends React.Component {
+    constructor(props) {
+        super(props)
+    }
+
     render() {
         const { palettes, classes } = this.props;
+
         return (
             <div className={classes.root}>
                 <div className={classes.container}>

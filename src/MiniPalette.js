@@ -1,5 +1,6 @@
 import React from 'react';
 import { withStyles } from '@material-ui/core/styles';
+import { useNavigate, useParams } from 'react-router-dom';
 
 const styles = {
     root: {
@@ -35,18 +36,24 @@ const styles = {
 }
 
 function MiniPalette(props) {
-    const { classes, paletteName, emoji, colors } = props;
+    const { classes, paletteName, emoji, colors, id } = props;
+    let navigate = useNavigate();
+
+    function GoToPalette() {
+        navigate(`/palette/${id}`)
+    }
+
     return (
-        <div className={classes.root}>
+        <div className={classes.root} onClick={GoToPalette}>
             <div className={classes.color}>
                 {
                     colors.map(color => (
-                        <div className={classes.miniColors} style={{ backgroundColor: color.color }}></div>
+                        <div className={classes.miniColors} style={{ backgroundColor: color.color }} key={color.name}></div>
                     ))
                 }
             </div>
             <h5 className={classes.title}>{paletteName}<span className={classes.emoji}>{emoji}</span></h5>
-        </div>
+        </div >
     )
 }
 
