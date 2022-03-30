@@ -30,7 +30,6 @@ import chroma from 'chroma-js';
 const levels = [50, 100, 200, 300, 400, 500, 600, 700, 800, 900];
 
 function generatePalette(starterPalette) {
-    console.log('start', starterPalette)
     let newPalette = {
         paletteName: starterPalette.paletteName,
         id: starterPalette.id,
@@ -72,9 +71,3 @@ function getScale(hexColor, numOfColors) {
 }
 
 export { generatePalette };
-
-let arr = ['a', 'b', 'c', 'd', 'e'];
-
-for (let i of arr) {
-    // console.log('i is', i)
-}

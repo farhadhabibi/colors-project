@@ -1,6 +1,6 @@
 import React from 'react';
 import { withStyles } from '@material-ui/core/styles';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useNavigate, useParams, Navigate } from 'react-router-dom';
 
 const styles = {
     root: {
@@ -37,10 +37,10 @@ const styles = {
 
 function MiniPalette(props) {
     const { classes, paletteName, emoji, colors, id } = props;
-    let navigate = useNavigate();
+    const navigate = useNavigate();
 
     function GoToPalette() {
-        navigate(`/palette/${id}`)
+        navigate(`/palette/${id}`);
     }
 
     return (
