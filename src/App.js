@@ -1,9 +1,10 @@
 import { Routes, Route, useParams } from 'react-router-dom';
 import Palette from './Palette';
 import seedColors from './seedColors';
+import PaletteList from './PaletteList';
+import SingleColorBox from './SingleColorBox'
 import { generatePalette } from './colorHelper';
 import './App.css';
-import PaletteList from './PaletteList';
 
 function App() {
   const FindPaletteId = () => {
@@ -15,6 +16,7 @@ function App() {
     <Routes>
       <Route path="/" element={<PaletteList palettes={seedColors} />} />
       <Route path="/palette/:id" element={<FindPaletteId />}></Route>
+      <Route path="/palette/:paletteId/:colorId" element={<SingleColorBox />}></Route>
     </Routes>
   );
 }
