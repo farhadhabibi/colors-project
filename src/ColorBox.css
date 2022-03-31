@@ -5,10 +5,16 @@
     /* cursor: pointer; */
     margin-bottom: -3.5px;
 }
+.singleColorPalette .ColorBox {
+    height: 50%;
+}
+.ColorBox.go-back {
+    background-color: black;
+}
 .ColorBox-content {
     text-transform: uppercase;
 }
-.copy-button {
+.copy-button, .back-button {
     position: absolute;
     margin-top: 5.5%;
     margin-left: 7%;
@@ -22,6 +28,10 @@
     text-transform: uppercase;
     font-size: 13px;
     opacity: 0;
+    text-decoration: none;
+}
+.back-button {
+    opacity: 1;
 }
 .ColorBox:hover .copy-button {
     opacity: 1;
@@ -29,9 +39,17 @@
 .box-color {
     position: absolute;
     margin-top: 10.3%;
+    /* left: 0;
+    bottom: 0; */
     padding: 10px;
     font-size: 10px;
     letter-spacing: 0.07rem
+}
+.white-color {
+    color: white;
+}
+.ColorBox .dark-color {
+    color: rgb(0, 0, 0, 0.5);
 }
 .see-more {
     position: absolute;

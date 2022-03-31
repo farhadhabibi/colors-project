@@ -8,15 +8,22 @@ import './App.css';
 
 function App() {
   const FindPaletteId = () => {
-    const { id } = useParams();
-    const palette = seedColors.find(palette => palette.id === id)
-    return <Palette palette={generatePalette(palette)} />
+    const { id, paletteId, colorId } = useParams();
+    if (id) {
+      const palette = seedColors.find(palette => palette.id === id)
+      return <Palette palette={generatePalette(palette)} />
+    } else {
+      const palette = seedColors.find(palette => palette.id === paletteId)
+      return <SingleColorBox palette={generatePalette(palette)} colorId={colorId} />
+    }
+
   }
+
   return (
     <Routes>
       <Route path="/" element={<PaletteList palettes={seedColors} />} />
       <Route path="/palette/:id" element={<FindPaletteId />}></Route>
-      <Route path="/palette/:paletteId/:colorId" element={<SingleColorBox />}></Route>
+      <Route path="/palette/:paletteId/:colorId" element={<FindPaletteId />}></Route>
     </Routes>
   );
 }
