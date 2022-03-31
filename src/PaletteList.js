@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { NavLink, useNavigate } from 'react-router-dom'
 import MiniPalette from './MiniPalette';
 import { withStyles } from '@material-ui/core/styles';
-import { withMyHook } from './colorHelper'
 
 const styles = {
     root: {
