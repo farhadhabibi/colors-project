@@ -4,7 +4,6 @@ import seedColors from './seedColors';
 import PaletteList from './PaletteList';
 import SingleColorBox from './SingleColorBox'
 import { generatePalette } from './colorHelper';
-import './App.css';
 
 function App() {
   const FindPaletteId = () => {
