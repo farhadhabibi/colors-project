@@ -1,19 +1,19 @@
-.ColorBox {
+/* .ColorBox {
     display: inline-block;
     width: 20%;
     height: 25%;
     margin-bottom: -3.5px;
-}
-.singleColorPalette .ColorBox {
+} */
+/* .singleColorPalette .ColorBox {
     height: 50%;
-}
-.ColorBox.go-back {
+} */
+/* .ColorBox.go-back {
     background-color: black;
-}
+} */
 /* .ColorBox-content {
     text-transform: uppercase;
 } */
-.copy-button, .back-button {
+/* .copy-button, .back-button {
     position: absolute;
     margin-top: 5.5%;
     margin-left: 7%;
@@ -31,7 +31,7 @@
 }
 .back-button {
     opacity: 1;
-}
+} */
 /* .ColorBox:hover .copy-button {
     opacity: 1;
 }
