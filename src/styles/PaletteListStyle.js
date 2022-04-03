@@ -19,7 +19,11 @@ export default {
         width: '100%',
         justifyContent: 'space-between',
         color: 'white',
-        fontFamily: 'normal'
+        fontFamily: 'normal',
+        alignItems: 'center',
+        '& a': {
+            color: 'white',
+        }
     },
     palettes: {
         display: 'grid',

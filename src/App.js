@@ -4,6 +4,7 @@ import seedColors from './seedColors';
 import PaletteList from './PaletteList';
 import SingleColorBox from './SingleColorBox'
 import { generatePalette } from './colorHelper';
+import NewPaletteForm from './NewPaletteFrom';
 
 function App() {
   const FindPaletteId = () => {
@@ -23,6 +24,7 @@ function App() {
       <Route path="/" element={<PaletteList palettes={seedColors} />} />
       <Route path="/palette/:id" element={<FindPaletteId />}></Route>
       <Route path="/palette/:paletteId/:colorId" element={<FindPaletteId />}></Route>
+      <Route path="/palette/new" element={<NewPaletteForm />} />
     </Routes>
   );
 }
