@@ -2,13 +2,9 @@ import React, { Component } from 'react';
 import clsx from 'clsx';
 import Drawer from '@material-ui/core/Drawer';
 import { withStyles } from '@material-ui/core/styles';
-import CssBaseline from '@material-ui/core/CssBaseline';
-import AppBar from '@material-ui/core/AppBar';
-import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import Divider from '@material-ui/core/Divider';
 import IconButton from '@material-ui/core/IconButton';
-import MenuIcon from '@material-ui/icons/Menu';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import { ChromePicker } from 'react-color';
 import Button from '@material-ui/core/Button';
@@ -16,6 +12,7 @@ import DraggableColorBox from './DraggableColorBox';
 import { ValidatorForm, TextValidator } from 'react-material-ui-form-validator';
 import DraggableColorList from './DraggableColorList';
 import { arrayMove } from 'react-sortable-hoc'
+import PaletteFormNavbar from './PaletteFormNavbar';
 
 const drawerWidth = 400;
 
@@ -91,7 +88,6 @@ class NewPaletteForm extends Component {
             colorValue: "#6e4b72",
             newName: "",
             colors: this.props.palettes[0].colors,
-            newPaletteName: ""
         }
         this.updateColorValue = this.updateColorValue.bind(this);
         this.addNewColor = this.addNewColor.bind(this);
@@ -143,11 +139,10 @@ class NewPaletteForm extends Component {
         })
     }
 
-    saveNewPalette() {
-        const newName = this.state.newPaletteName
+    saveNewPalette(newPaletteName) {
         const newPalette = {
-            paletteName: newName,
-            id: newName.toLocaleLowerCase().replace(/ /g, '-'),
+            paletteName: newPaletteName,
+            id: newPaletteName.toLocaleLowerCase().replace(/ /g, '-'),
             colors: this.state.colors
         }
         this.props.savePalette(newPalette);
@@ -187,41 +182,8 @@ class NewPaletteForm extends Component {
 
         return (
             <div className={classes.root} >
-                <CssBaseline />
-                <AppBar
-                    position="fixed"
-                    color="default"
-                    className={clsx(classes.appBar, {
-                        [classes.appBarShift]: open,
-                    })}
-                >
-                    <Toolbar>
-                        <IconButton
-                            color="inherit"
-                            aria-label="open drawer"
-                            onClick={this.handleDrawerOpen}
-                            edge="start"
-                            className={clsx(classes.menuButton, open && classes.hide)}
-                        >
-                            <MenuIcon />
-                        </IconButton>
-                        <Typography variant="h6" noWrap>
-                            Persistent drawer
-                        </Typography>
-                        <ValidatorForm className={classes.createPalette} onSubmit={this.saveNewPalette}>
-                            <TextValidator value={this.state.newPaletteName}
-                                label='Palette Name'
-                                name="newPaletteName"
-                                onChange={this.handleChange}
-                                validators={['required', 'isPaletteNameUnique']}
-                                errorMessages={['Enter Palette Name', 'Palette Name is taken']}
-                            />
-                            <Button variant="contained" color="primary" type="submit">
-                                Create Palette
-                            </Button>
-                        </ValidatorForm>
-                    </Toolbar>
-                </AppBar>
+                <PaletteFormNavbar classes={classes} open={open}
+                    saveNewPalette={this.saveNewPalette} handleDrawerOpen={this.handleDrawerOpen} />
                 <Drawer
                     className={classes.drawer}
                     variant="persistent"
