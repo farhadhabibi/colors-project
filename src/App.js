@@ -5,7 +5,7 @@ import seedColors from './seedColors';
 import PaletteList from './PaletteList';
 import SingleColorBox from './SingleColorBox'
 import { generatePalette } from './colorHelper';
-import NewPaletteForm from './NewPaletteFrom';
+import NewPaletteForm from './NewPaletteForm';
 import { withMyHook } from './helper'
 
 class App extends Component {
