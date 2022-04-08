@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import clsx from 'clsx';
 // import Drawer from '@material-ui/core/Drawer'; find the snippet and test
-// import { withStyles } from '@material-ui/core/styles';
+import { withStyles } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
@@ -13,6 +13,45 @@ import DraggableColorBox from './DraggableColorBox';
 import { ValidatorForm, TextValidator } from 'react-material-ui-form-validator';
 import { Link } from 'react-router-dom';
 
+const drawerWidth = 400;
+
+const styles = theme => ({
+    root: {
+        display: 'flex'
+    },
+    appBar: {
+        transition: theme.transitions.create(['margin', 'width'], {
+            easing: theme.transitions.easing.sharp,
+            duration: theme.transitions.duration.leavingScreen,
+        }),
+        display: 'flex',
+        flexDirection: 'row',
+        justifyContent: 'space-between'
+    },
+    appBarShift: {
+        width: `calc(100% - ${drawerWidth}px)`,
+        marginLeft: drawerWidth,
+        transition: theme.transitions.create(['margin', 'width'], {
+            easing: theme.transitions.easing.easeOut,
+            duration: theme.transitions.duration.enteringScreen,
+        }),
+    },
+    menuButton: {
+        marginRight: theme.spacing(2),
+    },
+    hide: {
+        display: 'none',
+    },
+    createPalette: {
+        display: 'flex',
+        justifyContent: 'flex-end'
+    },
+    navBtns: {
+        display: 'flex',
+        flexDirection: 'row'
+    }
+})
+
 class PaletteFormNavbar extends React.Component {
     constructor(props) {
         super(props);
@@ -20,6 +59,14 @@ class PaletteFormNavbar extends React.Component {
             newPaletteName: ""
         }
         this.handleChange = this.handleChange.bind(this);
+    }
+
+    componentDidMount() {
+        ValidatorForm.addValidationRule("isPaletteNameUnique", value =>
+            this.props.palettes.every(
+                ({ paletteName }) => paletteName.toLocaleLowerCase() !== value.toLocaleLowerCase()
+            )
+        );
     }
 
     handleChange(e) {
@@ -32,7 +79,7 @@ class PaletteFormNavbar extends React.Component {
         const { classes, open, saveNewPalette } = this.props;
         const { newPaletteName } = this.state;
         return (
-            <div>
+            <div className={classes.root}>
                 <CssBaseline />
                 <AppBar
                     position="fixed"
@@ -52,10 +99,11 @@ class PaletteFormNavbar extends React.Component {
                             <MenuIcon />
                         </IconButton>
                         <Typography variant="h6" noWrap>
-                            Persistent drawer
+                            Create a Palette
                         </Typography>
-                        <ValidatorForm className={classes.createPalette}
-                            onSubmit={() => saveNewPalette(newPaletteName)}>
+                    </Toolbar>
+                    <div className={classes.navBtns}>
+                        <ValidatorForm onSubmit={() => saveNewPalette(newPaletteName)}>
                             <TextValidator value={newPaletteName}
                                 label='Palette Name'
                                 name="newPaletteName"
@@ -65,17 +113,18 @@ class PaletteFormNavbar extends React.Component {
                             />
                             <Button variant="contained" color="primary" type="submit">
                                 Create Palette
-                            </Button>
-                            <Link to="/">
-                                <Button variant="contained" color="secondary">Go Back</Button>
-                            </Link>
+                                </Button>
                         </ValidatorForm>
-                    </Toolbar>
+                        <Link to="/">
+                            <Button variant="contained" color="secondary">Go Back</Button>
+                        </Link>
+                    </div>
                 </AppBar>
             </div>
         )
     }
 }
 
-export default PaletteFormNavbar;
+export default (withStyles)(styles)(PaletteFormNavbar);
+
 
