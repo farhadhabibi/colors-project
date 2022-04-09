@@ -10,8 +10,8 @@ import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
 import Button from '@material-ui/core/Button';
 import DraggableColorBox from './DraggableColorBox';
-import { ValidatorForm, TextValidator } from 'react-material-ui-form-validator';
 import { Link } from 'react-router-dom';
+import PaletteMetaForm from './PaletteMetaForm';
 
 const drawerWidth = 400;
 
@@ -56,28 +56,12 @@ class PaletteFormNavbar extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            newPaletteName: ""
         }
-        this.handleChange = this.handleChange.bind(this);
-    }
-
-    componentDidMount() {
-        ValidatorForm.addValidationRule("isPaletteNameUnique", value =>
-            this.props.palettes.every(
-                ({ paletteName }) => paletteName.toLocaleLowerCase() !== value.toLocaleLowerCase()
-            )
-        );
-    }
-
-    handleChange(e) {
-        this.setState({
-            [e.target.name]: e.target.value
-        })
     }
 
     render() {
-        const { classes, open, saveNewPalette } = this.props;
-        const { newPaletteName } = this.state;
+        const { classes, open, saveNewPalette, palettes } = this.props;
+
         return (
             <div className={classes.root}>
                 <CssBaseline />
@@ -103,18 +87,7 @@ class PaletteFormNavbar extends React.Component {
                         </Typography>
                     </Toolbar>
                     <div className={classes.navBtns}>
-                        <ValidatorForm onSubmit={() => saveNewPalette(newPaletteName)}>
-                            <TextValidator value={newPaletteName}
-                                label='Palette Name'
-                                name="newPaletteName"
-                                onChange={this.handleChange}
-                                validators={['required', 'isPaletteNameUnique']}
-                                errorMessages={['Enter Palette Name', 'Palette Name is taken']}
-                            />
-                            <Button variant="contained" color="primary" type="submit">
-                                Create Palette
-                                </Button>
-                        </ValidatorForm>
+                        <PaletteMetaForm palettes={palettes} saveNewPalette={saveNewPalette} />
                         <Link to="/">
                             <Button variant="contained" color="secondary">Go Back</Button>
                         </Link>
