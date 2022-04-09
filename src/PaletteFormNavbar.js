@@ -13,7 +13,7 @@ import DraggableColorBox from './DraggableColorBox';
 import { Link } from 'react-router-dom';
 import PaletteMetaForm from './PaletteMetaForm';
 
-const drawerWidth = 400;
+const drawerWidth = 350;
 
 const styles = theme => ({
     root: {
@@ -26,7 +26,8 @@ const styles = theme => ({
         }),
         display: 'flex',
         flexDirection: 'row',
-        justifyContent: 'space-between'
+        justifyContent: 'space-between',
+        alignItems: 'center'
     },
     appBarShift: {
         width: `calc(100% - ${drawerWidth}px)`,
@@ -47,8 +48,13 @@ const styles = theme => ({
         justifyContent: 'flex-end'
     },
     navBtns: {
-        display: 'flex',
-        flexDirection: 'row'
+        marginRight: '1rem',
+        '& a': {
+            textDecoration: 'none'
+        }
+    },
+    button: {
+        margin: '0.5rem'
     }
 })
 
@@ -56,7 +62,18 @@ class PaletteFormNavbar extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
+            formShowing: false
         }
+        this.showForm = this.showForm.bind(this);
+        this.hideForm = this.hideForm.bind(this);
+    }
+
+    showForm() {
+        this.setState({ formShowing: true })
+    }
+
+    hideForm() {
+        this.setState({ formShowing: false })
     }
 
     render() {
@@ -87,12 +104,20 @@ class PaletteFormNavbar extends React.Component {
                         </Typography>
                     </Toolbar>
                     <div className={classes.navBtns}>
-                        <PaletteMetaForm palettes={palettes} saveNewPalette={saveNewPalette} />
                         <Link to="/">
                             <Button variant="contained" color="secondary">Go Back</Button>
                         </Link>
+                        <Button variant="contained" color="primary"
+                            className={classes.button} onClick={this.showForm}>
+                            Save
+                        </Button>
                     </div>
                 </AppBar>
+                {this.state.formShowing
+                    && <PaletteMetaForm palettes={palettes}
+                        saveNewPalette={saveNewPalette}
+                        hideForm={this.hideForm} />
+                }
             </div>
         )
     }

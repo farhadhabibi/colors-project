@@ -12,7 +12,7 @@ import { arrayMove } from 'react-sortable-hoc'
 import PaletteFormNavbar from './PaletteFormNavbar';
 import ColorPickerForm from './ColorPickerForm';
 
-const drawerWidth = 400;
+const drawerWidth = 350;
 
 const styles = theme => ({
     root: {
@@ -155,7 +155,7 @@ class NewPaletteForm extends Component {
                     </div>
                     <Divider />
                     <div className={classes.container}>
-                        <Typography variant="h4">Design Your Palette</Typography>
+                        <Typography variant="h5" gutterBottom>Design Your Palette</Typography>
                         <div className={classes.buttons}>
                             <Button variant="contained" color="secondary"
                                 onClick={this.clearPalette}>
