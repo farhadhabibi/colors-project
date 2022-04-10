@@ -1,3 +1,4 @@
+import mediaQueries from './MediaQueries'
 export default {
     root: {
         display: 'inline-block',
@@ -9,7 +10,16 @@ export default {
         '&:hover svg': {
             color: 'white',
             transform: 'scale(1.3)'
+        },
+        [mediaQueries.down('sm')]: {
+            width: '50%',
+            height: '10%',
+        },
+        [mediaQueries.down('xs')]: {
+            width: '100%',
+            height: '5%'
         }
+
     },
     boxContent: {
         position: 'absolute',

@@ -12,7 +12,7 @@ import Button from '@material-ui/core/Button';
 import DraggableColorBox from './DraggableColorBox';
 import { Link } from 'react-router-dom';
 import PaletteMetaForm from './PaletteMetaForm';
-import styles from './styles/PaletteFromNavbarStyles';
+import styles from './styles/PaletteFormNavbarStyles';
 
 
 class PaletteFormNavbar extends React.Component {
@@ -62,7 +62,8 @@ class PaletteFormNavbar extends React.Component {
                     </Toolbar>
                     <div className={classes.navBtns}>
                         <Link to="/">
-                            <Button variant="contained" color="secondary">Go Back</Button>
+                            <Button variant="contained" color="secondary"
+                                className={classes.button}>Go Back</Button>
                         </Link>
                         <Button variant="contained" color="primary"
                             className={classes.button} onClick={this.showForm}>

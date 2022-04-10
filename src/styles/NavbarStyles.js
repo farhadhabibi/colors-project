@@ -1,3 +1,4 @@
+import mediaQueries from './MediaQueries'
 export default {
     Navbar: {
         display: 'flex',
@@ -16,7 +17,15 @@ export default {
         '& a': {
             textDecoration: 'none',
             color: 'black'
+        },
+        [mediaQueries.down('xs')]: {
+            display: 'none'
         }
+    },
+    sliderContainer: {
+        display: 'flex',
+        alignItems: 'center',
+        width: '100%'
     },
     slider: {
         width: '20%',
@@ -34,6 +43,12 @@ export default {
             border: '2px solid green',
             boxShadow: 'none',
             marginTop: '-3.5px',
+        },
+        [mediaQueries.down('md')]: {
+            width: '50%'
+        },
+        [mediaQueries.down('xs')]: {
+            width: '50%'
         }
     },
     selectContainer: {

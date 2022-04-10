@@ -2,10 +2,10 @@ import chroma from 'chroma-js';
 import mediaQueries from './MediaQueries'
 export default {
     ColorBox: {
-        // position: 'relative',
+        position: 'relative',
         display: 'inline-block',
         width: '20%',
-        // margin: '0 auto',
+        margin: '0 auto',
         height: props => props.showLink ? '25%' : '50%',
         marginBottom: '-3.5px',
         '&:hover button': {
@@ -13,11 +13,11 @@ export default {
         },
         [mediaQueries.down('lg')]: {
             width: '25%',
-            height: props => props.showLink ? '20%' : '50%',
+            height: props => props.showLink ? '20%' : '33.3333%',
         },
         [mediaQueries.down('md')]: {
             width: '50%',
-            height: props => props.showLink ? '10%' : '50%',
+            height: props => props.showLink ? '10%' : '20%',
         },
         [mediaQueries.down('xs')]: {
             width: '100%',
@@ -35,37 +35,38 @@ export default {
         position: 'absolute',
         backgroundColor: 'rgb(255, 255, 255, 0.3)',
         cursor: 'pointer',
-        marginTop: '10.7%',
-        marginLeft: '16.4%',
-        width: '3%',
         padding: '4px',
         fontSize: '13px',
         textAlign: 'center',
         display: 'inline-block',
+        right: 0,
+        bottom: 0,
     },
     boxColor: {
         color: props => chroma(props.background).luminance() <= 0.06 ? 'white' : 'rgb(0, 0, 0, 0.5)',
         position: 'absolute',
-        marginTop: props => props.showLink ? '10.3%' : '22.6%',
         padding: '10px',
         fontSize: '10px',
-        letterSpacing: '0.07rem'
+        letterSpacing: '0.07rem',
+        left: 0,
+        bottom: 0
     },
     copyButton: {
         position: 'absolute',
-        marginTop: props => props.showLink ? '5.5%' : '11%',
-        marginLeft: '7%',
         outline: 'none',
         border: 'none',
         backgroundColor: 'rgb(255, 255, 255, 0.3)',
-        width: '6%',
-        height: '3%',
+        width: '100px',
+        height: '25px',
         color: props => chroma(props.background).luminance() <= 0.06 ? 'white' : 'rgb(0, 0, 0, 0.5)',
         cursor: 'pointer',
         textTransform: 'uppercase',
         fontSize: '13px',
         opacity: '0',
         textDecoration: 'none',
+        top: '47%',
+        left: '34%',
+
     },
     colorBoxContent: {
         textTransform: 'uppercase'
