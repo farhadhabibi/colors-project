@@ -10,10 +10,12 @@ import { withMyHook } from './helper'
 
 class App extends Component {
   constructor(props) {
-    super(props)
+    super(props);
+    const savedPalettes = JSON.parse(localStorage.getItem('palettes'));
     this.state = {
-      palette: seedColors
+      palette: savedPalettes || seedColors
     }
+
   }
 
   findPaletteId = () => {
@@ -29,7 +31,11 @@ class App extends Component {
   }
 
   savePalette = (newPalette) => {
-    this.setState({ palette: [...this.state.palette, newPalette] })
+    this.setState({ palette: [...this.state.palette, newPalette] }, this.syncLocalStorage);
+  }
+
+  syncLocalStorage() {
+    localStorage.setItem('palettes', JSON.stringify(this.state.palette))
   }
 
   render() {
