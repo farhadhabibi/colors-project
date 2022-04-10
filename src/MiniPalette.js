@@ -12,15 +12,19 @@ function MiniPalette(props) {
         navigate(`/palette/${id}`);
     }
 
+    function deletePalette(e) {
+        e.stopPropagation();
+        props.handleDeletePalette(id)
+    }
+
     return (
         <div className={classes.root} onClick={GoToPalette}>
-            <div className={classes.delete}>
-                <DeleteIcon className={classes.deleteIcon} />
-            </div>
+            <DeleteIcon className={classes.deleteIcon} onClick={deletePalette} />
             <div className={classes.color}>
                 {
                     colors.map(color => (
-                        <div className={classes.miniColors} style={{ backgroundColor: color.color }} key={color.name}></div>
+                        <div className={classes.miniColors}
+                            style={{ backgroundColor: color.color }} key={color.name}></div>
                     ))
                 }
             </div>

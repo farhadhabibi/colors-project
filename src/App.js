@@ -15,7 +15,7 @@ class App extends Component {
     this.state = {
       palette: savedPalettes || seedColors
     }
-
+    this.deletePalette = this.deletePalette.bind(this)
   }
 
   findPaletteId = () => {
@@ -34,6 +34,12 @@ class App extends Component {
     this.setState({ palette: [...this.state.palette, newPalette] }, this.syncLocalStorage);
   }
 
+  deletePalette(id) {
+    this.setState(curState => ({
+      palette: curState.palette.filter(palette => palette.id !== id)
+    }), this.syncLocalStorage)
+  }
+
   syncLocalStorage() {
     localStorage.setItem('palettes', JSON.stringify(this.state.palette))
   }
@@ -41,7 +47,7 @@ class App extends Component {
   render() {
     return (
       <Routes>
-        <Route path="/" element={<PaletteList palettes={this.state.palette} />} />
+        <Route path="/" element={<PaletteList palettes={this.state.palette} deletePalette={this.deletePalette} />} />
         <Route path="/palette/:id" element={<this.findPaletteId />}></Route>
         <Route path="/palette/:paletteId/:colorId" element={<this.findPaletteId />}></Route>
         <Route path="/palette/new" element={<NewPaletteForm savePalette={this.savePalette}
