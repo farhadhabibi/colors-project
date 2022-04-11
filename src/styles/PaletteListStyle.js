@@ -1,6 +1,22 @@
 import mediaQueries from './MediaQueries'
 import bg from './bgImage.svg'
 export default {
+    '@global': {
+        // .item-enter {
+        //     opacity: 0;
+        //   }
+        //   .item-enter-active {
+        //     opacity: 1;
+        //     transition: opacity 500ms ease-in;
+        //   }
+        '.fade-exit': {
+            opacity: 1
+        },
+        '.fade-exit-active': {
+            opacity: 0,
+            transition: 'opacity 500ms ease-out'
+        }
+    },
     root: {
         backgroundImage: `url(${bg})`,
         height: '100vh',
