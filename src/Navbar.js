@@ -37,7 +37,7 @@ class Navbar extends Component {
                     <NavLink to="/">reactcolorpicker</NavLink>
                 </div>
                 {slider &&
-                    <div style={{ width: '100%', display: 'inline-block' }}>
+                    <div className={classes.sliderContainer}>
                         <span>Level {level}</span>
                         <div className={classes.slider}>
                             <Slider defaultValue={level} min={100} max={900} step={100}
