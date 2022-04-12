@@ -19,7 +19,7 @@ import { withStyles } from '@material-ui/core/styles';
 import styles from './styles/PaletteListStyle';
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
 
-class PaletteList extends React.Component {
+class PaletteList extends Component {
     constructor(props) {
         super(props);
         this.state = {
