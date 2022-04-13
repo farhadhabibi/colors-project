@@ -1,13 +1,13 @@
 import React, { Component } from 'react'
 import { Routes, Route, useParams, useNavigate, useLocation } from 'react-router-dom';
+import { CSSTransition, TransitionGroup } from 'react-transition-group';
 import Palette from './Palette';
-import seedColors from './seedColors';
 import PaletteList from './PaletteList';
 import SingleColorBox from './SingleColorBox'
-import { generatePalette } from './colorHelper';
 import NewPaletteForm from './NewPaletteForm';
+import seedColors from './seedColors';
+import { generatePalette } from './colorHelper';
 import { withMyHook } from './helper';
-import { CSSTransition, TransitionGroup } from 'react-transition-group';
 import './App.css';
 
 class App extends Component {
@@ -48,15 +48,6 @@ class App extends Component {
 
   render() {
     return (
-      // <Routes element={() => (
-      //   <Routes>
-      //     <Route path="/" element={<PaletteList palettes={this.state.palette} deletePalette={this.deletePalette} />} />
-      //     <Route path="/palette/:id" element={<this.findPaletteId />}></Route>
-      //     <Route path="/palette/:paletteId/:colorId" element={<this.findPaletteId />}></Route>
-      //     <Route path="/palette/new" element={<NewPaletteForm savePalette={this.savePalette}
-      //       navigate={this.props.nav} palettes={this.state.palette} />} />
-      //   </Routes>
-      // )} />
       <TransitionGroup>
         <CSSTransition key={this.props.location.key} classNames="fade" timeout={500}>
           <Routes>
@@ -92,23 +83,5 @@ export default withMyHook(App);
 //     }
 
 //   }
-
-  // function SavePalette(newPalette) {
-  //   // useEffect(() => {
-  //   //   setPalettes(newPalette);    STACKED IN HERE
-  //   // }, []);
-  //   console.log(newPalette)
-  //   return <NewPaletteForm savePalette={SavePalette} navigate={nav} />
-  // }
-
-//   return (
-//     <Routes>
-//       <Route path="/" element={<PaletteList palettes={palettes} />} />
-//       <Route path="/palette/:id" element={<FindPaletteId />}></Route>
-//       <Route path="/palette/:paletteId/:colorId" element={<FindPaletteId />}></Route>
-//       <Route path="/palette/new" element={<SavePalette />} />
-//     </Routes>
-//   );
-// }
 
 // export default App;

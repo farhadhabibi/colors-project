@@ -44,7 +44,7 @@ export default {
             boxShadow: 'none',
             marginTop: '-3.5px',
         },
-        [mediaQueries.down('md')]: {
+        [mediaQueries.down('lg')]: {
             width: '50%'
         },
         [mediaQueries.down('xs')]: {

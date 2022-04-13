@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import clsx from 'clsx';
-// import Drawer from '@material-ui/core/Drawer'; find the snippet and test
 import { withStyles } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import AppBar from '@material-ui/core/AppBar';
@@ -10,10 +10,8 @@ import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
 import Button from '@material-ui/core/Button';
 import DraggableColorBox from './DraggableColorBox';
-import { Link } from 'react-router-dom';
 import PaletteMetaForm from './PaletteMetaForm';
 import styles from './styles/PaletteFormNavbarStyles';
-
 
 class PaletteFormNavbar extends React.Component {
     constructor(props) {

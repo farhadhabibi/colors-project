@@ -1,12 +1,8 @@
 import React from 'react';
-import { withStyles } from '@material-ui/core/styles';
 import { useNavigate, useParams, Navigate } from 'react-router-dom';
-import styles from './styles/MiniPaletteStyles';
+import { withStyles } from '@material-ui/core/styles';
 import DeleteIcon from '@material-ui/icons/Delete';
-
-// const MyComponent = React.memo(function MyComponent(props) {
-//     /* render using props */
-//   });
+import styles from './styles/MiniPaletteStyles';
 
 const MiniPalette = React.memo(function MiniPalette(props) {
     const { classes, paletteName, emoji, colors, id } = props;

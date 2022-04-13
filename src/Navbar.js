@@ -7,7 +7,6 @@ import Snackbar from '@material-ui/core/Snackbar';
 import IconButton from '@material-ui/core/IconButton';
 import CloseIcon from '@material-ui/icons/Close';
 import { withStyles } from '@material-ui/core/styles';
-
 import styles from './styles/NavbarStyles';
 import 'rc-slider/assets/index.css';
 
@@ -38,7 +37,7 @@ class Navbar extends Component {
                 </div>
                 {slider &&
                     <div className={classes.sliderContainer}>
-                        <span>Level {level}</span>
+                        <span style={{ marginLeft: '1rem' }}>Level {level}</span>
                         <div className={classes.slider}>
                             <Slider defaultValue={level} min={100} max={900} step={100}
                                 onAfterChange={changeLevel} />

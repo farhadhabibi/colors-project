@@ -1,4 +1,5 @@
 import mediaQueries from './MediaQueries'
+import chroma from 'chroma-js';
 export default {
     root: {
         display: 'inline-block',
@@ -23,7 +24,8 @@ export default {
     },
     boxContent: {
         position: 'absolute',
-        color: 'rgb(0, 0, 0, 0.5)',
+        color: props => chroma(props.color).luminance() <= 0.06
+            ? 'rgb(255, 255, 255, 0.7)' : 'rgb(0, 0, 0, 0.5)',
         width: '100%',
         left: 0,
         bottom: 0,

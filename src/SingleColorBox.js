@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
+import { withStyles } from '@material-ui/core/styles';
 import ColorBox from './ColorBox';
 import Navbar from './Navbar';
 import PaletteFooter from './PaletteFooter';
-import { withStyles } from '@material-ui/core/styles';
-import { Link } from 'react-router-dom';
 import styles from './styles/PaletteStyle';
 
 class SingleColorBox extends Component {
@@ -35,7 +35,6 @@ class SingleColorBox extends Component {
         const { classes } = this.props;
         const colorBoxes = this.gatherColors().map(color => (
             <ColorBox key={color.name} name={color.name} background={color[format]} showLink={false} />
-            // <div style={{ backgroundColor: color.hex, width: '20%', height: '30px' }} key={color.name}></div>
         ));
         return (
             <div className={classes.Palette}>
