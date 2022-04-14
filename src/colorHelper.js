@@ -25,7 +25,6 @@ function generatePalette(starterPalette) {
         }
         // console.log('colors', newPalette.colors)
     }
-    console.log('new platette is', newPalette);
     return newPalette;
 }
 

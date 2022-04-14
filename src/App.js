@@ -1,5 +1,5 @@
-import React, { Component } from 'react'
-import { Routes, Route, useParams, useNavigate, useLocation } from 'react-router-dom';
+import React, { Component, useEffect } from 'react'
+import { Routes, Route, useParams, Navigate, useLocation } from 'react-router-dom';
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
 import Palette from './Palette';
 import PaletteList from './PaletteList';
@@ -22,13 +22,19 @@ class App extends Component {
 
   findPaletteId = () => {
     const { id, paletteId, colorId } = useParams();
-    if (id) {
-      const palette = this.state.palette.find(palette => palette.id === id)
+    const palette = this.state.palette.find(palette => palette.id === id);
+    const paletteColor = this.state.palette.find(palette => palette.id === paletteId);
+
+    if (palette) {
       return <Palette palette={generatePalette(palette)} />
-    } else {
-      const palette = this.state.palette.find(palette => palette.id === paletteId)
-      return <SingleColorBox palette={generatePalette(palette)} colorId={colorId} />
-    }
+    } else if (paletteColor) {
+      const checkPalette = generatePalette(paletteColor).colors;
+      for (let keys in checkPalette) {
+        const check = checkPalette[keys].filter(color => color.id === colorId);
+        if (check.length === 0) return <Navigate to="/" replace />
+      }
+      return <SingleColorBox palette={generatePalette(paletteColor)} colorId={colorId} />
+    } else return <Navigate to="/" replace />
 
   }
 
@@ -53,13 +59,11 @@ class App extends Component {
           <Routes>
             <Route path="/" element={<PaletteList palettes={this.state.palette}
               deletePalette={this.deletePalette} />} />
-            <Route path="/palette/:id"
-              element={<div className='page'><this.findPaletteId /></div>}></Route>
-            <Route path="/palette/:paletteId/:colorId"
-              element={<div className='page'><this.findPaletteId /></div>}></Route>
-            <Route path="/palette/new"
-              element={<div className='page'><NewPaletteForm savePalette={this.savePalette}
-                navigate={this.props.nav} palettes={this.state.palette} /></div>} />
+            <Route path="/palette/:id" element={<this.findPaletteId />}></Route>
+            <Route path="/palette/:paletteId/:colorId" element={<this.findPaletteId />}></Route>
+            <Route path="/palette/new" element={<NewPaletteForm savePalette={this.savePalette}
+              navigate={this.props.nav} palettes={this.state.palette} />}></Route>
+            <Route path="*" element={<Navigate to="/" />}></Route>
           </Routes>
         </CSSTransition>
       </TransitionGroup>
